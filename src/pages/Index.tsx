@@ -39,7 +39,7 @@ const projects = [
     title: "ESICodeHub",
     tag: "Team Lead · Backend",
     desc: "2nd-year annual project at ESI: a GitHub-like platform dedicated to the school's students. Team Lead and backend manager, API architecture, auth, and repository management.",
-    link: null,
+    link: "https://esicodehub.vercel.app/",
   },
 ];
 
@@ -61,7 +61,46 @@ const minis = [
   },
 ];
 
+const hackathons = [
+  {
+    n: "01",
+    title: "MicroHack",
+    organizer: "Micro Club",
+    desc: "Designed PortFlow, a booking and visibility solution for regulating truck access to maritime port terminals.",
+    link: "https://github.com/roudj245/portflow",
+  },
+  {
+    n: "02",
+    title: "AUP4 Hackathon",
+    organizer: "ETIC Club",
+    desc: "Built a central digital solution for the wool supply chain, with priority on improving the collection phase.",
+    link: "https://github.com/roudj245/AUP_SOLUTION",
+  },
+  {
+    n: "03",
+    title: "TC",
+    organizer: "ETIC Club",
+    desc: "Worked on a support-ticket intelligence solution to improve visibility, traceability, and knowledge-base search.",
+    link: "https://github.com/roudj245/Solution1_TC",
+  },
+  {
+    n: "04",
+    title: "ETCODE",
+    organizer: "ETC",
+    desc: "Participated in a programming and problem-solving competition.",
+    link: null,
+  },
+];
+
 const socials = [
+  {
+    name: "GitHub",
+    handle: "roudj245",
+    href: "https://github.com/roudj245",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.16 1.18.92-.26 1.9-.38 2.88-.39.98.01 1.96.13 2.88.39 2.19-1.49 3.15-1.18 3.15-1.18.63 1.58.23 2.75.11 3.04.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.79.56A11.5 11.5 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+    ),
+  },
   {
     name: "LinkedIn",
     handle: "Roudj Abdelghani",
@@ -257,30 +296,121 @@ const Index = () => {
         </div>
 
         <div className="space-y-0 border-t border-border">
-          {projects.map((p) => (
-            <article
-              key={p.n}
-              className="reveal group grid md:grid-cols-12 gap-6 py-10 border-b border-border hover:bg-secondary/30 transition-colors px-2 cursor-pointer"
-            >
-              <div className="md:col-span-1 font-mono text-sm text-muted-foreground">{p.n}</div>
-              <div className="md:col-span-4">
-                <h3 className="text-3xl md:text-4xl font-bold tracking-tight group-hover:text-accent transition-colors">
-                  {p.title}
-                </h3>
-              </div>
-              <div className="md:col-span-2 font-mono text-xs uppercase tracking-wider text-muted-foreground pt-2">
-                {p.tag}
-              </div>
-              <div className="md:col-span-5 text-muted-foreground leading-relaxed">{p.desc}</div>
-            </article>
-          ))}
+          {projects.map((p) => {
+            const content = (
+              <>
+                <div className="md:col-span-1 font-mono text-sm text-muted-foreground">{p.n}</div>
+                <div className="md:col-span-4">
+                  <h3 className="text-3xl md:text-4xl font-bold tracking-tight group-hover:text-accent transition-colors">
+                    {p.title}
+                  </h3>
+                </div>
+                <div className="md:col-span-2 font-mono text-xs uppercase tracking-wider text-muted-foreground pt-2">
+                  {p.tag}
+                </div>
+                <div className="md:col-span-5 text-muted-foreground leading-relaxed">
+                  <p>{p.desc}</p>
+                  {p.link && (
+                    <div className="mt-4 font-mono text-xs uppercase tracking-wider text-accent">
+                      Click to open site -&gt;
+                    </div>
+                  )}
+                </div>
+              </>
+            );
+
+            if (p.link) {
+              return (
+                <a
+                  key={p.n}
+                  href={p.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="reveal group grid md:grid-cols-12 gap-6 py-10 border-b border-border hover:bg-secondary/30 transition-colors px-2 cursor-pointer"
+                >
+                  {content}
+                </a>
+              );
+            }
+
+            return (
+              <article
+                key={p.n}
+                className="reveal group grid md:grid-cols-12 gap-6 py-10 border-b border-border hover:bg-secondary/30 transition-colors px-2"
+              >
+                {content}
+              </article>
+            );
+          })}
+        </div>
+
+        {/* HACKATHONS */}
+        <div className="mt-32">
+          <div className="grid md:grid-cols-12 gap-12 mb-12">
+            <div className="md:col-span-4 reveal">
+              <div className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-4">04 / Hackathons</div>
+              <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Challenges.</h2>
+            </div>
+            <div className="md:col-span-8 reveal text-muted-foreground text-lg max-w-xl">
+              Hackathons and programming competitions where I worked on practical solutions under time pressure.
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {hackathons.map((h) => {
+              const card = (
+                <>
+                  <div className="flex items-start justify-between gap-4 mb-8">
+                    <div>
+                      <div className="font-mono text-xs text-muted-foreground mb-3">{h.n}</div>
+                      <h3 className="text-3xl font-bold tracking-tight group-hover:text-accent transition-colors">
+                        {h.title}
+                      </h3>
+                    </div>
+                    <div className="font-mono text-xs uppercase tracking-wider text-muted-foreground text-right">
+                      {h.organizer}
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{h.desc}</p>
+                  {h.link && (
+                    <div className="mt-8 font-mono text-xs text-accent truncate">
+                      View GitHub solution -&gt;
+                    </div>
+                  )}
+                </>
+              );
+
+              if (h.link) {
+                return (
+                  <a
+                    key={h.title}
+                    href={h.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="reveal group block border border-border p-8 hover:border-accent hover:bg-secondary/40 transition-all"
+                  >
+                    {card}
+                  </a>
+                );
+              }
+
+              return (
+                <article
+                  key={h.title}
+                  className="reveal group border border-border p-8"
+                >
+                  {card}
+                </article>
+              );
+            })}
+          </div>
         </div>
 
         {/* MINIS */}
         <div className="mt-32">
           <div className="grid md:grid-cols-12 gap-12 mb-12">
             <div className="md:col-span-4 reveal">
-              <div className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-4">04 / Side</div>
+              <div className="font-mono text-xs uppercase tracking-[0.3em] text-accent mb-4">05 / Side</div>
               <h2 className="text-5xl md:text-6xl font-bold tracking-tight">Mini works.</h2>
             </div>
             <div className="md:col-span-8 reveal text-muted-foreground text-lg max-w-xl">
@@ -320,7 +450,7 @@ const Index = () => {
         <div className="absolute -top-40 right-0 h-[500px] w-[500px] rounded-full bg-accent/10 blur-[120px]" />
         <div className="container relative">
           <div className="reveal font-mono text-xs uppercase tracking-[0.3em] text-accent mb-6">
-            05 / Contact
+            06 / Contact
           </div>
           <h2 className="reveal text-6xl md:text-[12vw] leading-[0.9] font-bold tracking-[-0.04em] mb-16">
             Let's
